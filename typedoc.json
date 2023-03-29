@@ -1,0 +1,8 @@
+{
+  "entryPoints": [
+    "./src/funko.ts",
+    "./src/funkoOperations.ts",
+    "./src/index.ts"
+  ],
+  "out": "./docs"
+}
