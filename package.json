@@ -2,10 +2,9 @@
   "name": "doc-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "Mochila.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "dev": "tsc-watch --onSuccess \"node dist/Mochila.js\"",
     "doc": "typedoc",
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov"
@@ -16,6 +15,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.11",
     "@types/yargs": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",

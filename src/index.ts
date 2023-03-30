@@ -1,4 +1,4 @@
-import * as yargs from 'yargs';
+/*import * as yargs from 'yargs';
 import { FunkoOperations } from './funkoOperations.js';
 import { Funko, Tipo, Genero } from './funko.js';
 import { CommandModule } from 'yargs';

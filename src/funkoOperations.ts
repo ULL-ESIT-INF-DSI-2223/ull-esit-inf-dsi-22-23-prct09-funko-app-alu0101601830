@@ -1,4 +1,4 @@
-import { Funko } from './funko.js';
+/*import { Funko } from './funko.js';
 import * as fs from 'fs';
 import chalk from 'chalk';
 
@@ -97,9 +97,9 @@ export class FunkoOperations {
         } else {
             return chalk.green;
         }
-    }
+    }*/
     
-
+/*
     // Cargar y guardar Funkos en archivos JSON
     private loadFunkos(): void {
         if (!fs.existsSync(this.userDirectory)) {
@@ -150,5 +150,5 @@ export class FunkoOperations {
             console.log(`Género: ${funko.genero}`);
             console.log(``);
 	    })
-    }*/
-}
+    }*//*
+}*/
