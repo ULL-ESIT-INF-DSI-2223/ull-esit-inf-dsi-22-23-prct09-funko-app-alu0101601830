@@ -122,7 +122,7 @@ export class MochilaJSON extends Mochila {
   }
 }
 
-/* Funcionamiento de pruebas */
+/* Funcionamiento de prueba */
 const extractorCSV = new MochilaCSV();
 const resultadoCSV = extractorCSV.procesar('src/data/archivo.csv'); 
 console.log(resultadoCSV);
