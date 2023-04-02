@@ -4,11 +4,11 @@ export declare class FunkoOperations {
     private userDirectory;
     constructor(username: string);
     addFunko(funko: Funko, username: string): void;
-    updateFunko(updatedFunko: Funko): void;
-    deleteFunko(id: string): void;
+    updateFunko(updatedFunko: Funko, username: string): void;
+    deleteFunko(id: string, username: string): void;
     private findFunko;
     listFunkos(username: string): void;
-    getFunkoById(id: string): void;
+    getFunkoById(id: string, username: string): void;
     private printFunkoInfo;
     private getMarketValueColor;
     private loadFunkos;

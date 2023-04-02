@@ -24,25 +24,25 @@ export class FunkoOperations {
         }
     }
 
-    public updateFunko(updatedFunko: Funko): void {
+    public updateFunko(updatedFunko: Funko, username: string): void {
         const index = this.funkos.findIndex(funko => funko.id === updatedFunko.id);
         if (index !== -1) {
             this.funkos[index] = updatedFunko;
             this.saveFunko(updatedFunko);
-            console.log(chalk.green('Funko actualizado correctamente.'));
+            console.log(chalk.green(`Funko updated at ${username} collection!`));
         } else {
-            console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
         }
     }
 
-    public deleteFunko(id: string): void {
+    public deleteFunko(id: string, username: string): void {
         const index = this.funkos.findIndex(funko => funko.id === id);
         if (index !== -1) {
             this.funkos.splice(index, 1);
             this.deleteFunkoFile(id);
-            console.log(chalk.green('Funko eliminado correctamente.'));
+            console.log(chalk.green(`Funko removed from ${username} collection!`));
         } else {
-            console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
         }
     }
 
@@ -57,18 +57,20 @@ export class FunkoOperations {
             return;
         }
 
+        console.log(chalk.blue(`----------------------------------`));
+        console.log(chalk.blue(`${username} Funko Pop Collection`));
+
         for (const funko of this.funkos) {
-            console.log(chalk.blue(`----------------------------------`));
-            console.log(chalk.blue(`${username} Funko Pop Collection`));
+
             this.printFunkoInfo(funko);
         }
     }
 
-    public getFunkoById(id: string): void {
+    public getFunkoById(id: string, username: string): void {
         const funko = this.funkos.find(f => f.id === id);
 
         if (!funko) {
-            console.log(chalk.red(`No se encuentra el Funko con el ID "${id}".`));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
             return;
         }
 
@@ -78,26 +80,22 @@ export class FunkoOperations {
     private printFunkoInfo(funko: Funko): void {
         console.log(chalk.blue(`----------------------------------`));
         console.log(chalk.green(`ID: ${funko.id}`));
-        console.log(chalk.green(`Nombre: ${funko.nombre}`));
-        console.log(chalk.green(`Descripción: ${funko.descripcion}`));
-        console.log(chalk.green(`Tipo: ${funko.tipo}`));
-        console.log(chalk.green(`Género: ${funko.genero}`));
-        console.log(chalk.green(`Franquicia: ${funko.franquicia}`));
-        console.log(chalk.green(`Número: ${funko.numero}`));
-        console.log(chalk.green(`Exclusivo: ${funko.exclusivo}`));
-        console.log(chalk.green(`Características especiales: ${funko.caracteristicasEspeciales}`));
-        console.log(chalk.green(`Valor de mercado: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
+        console.log(chalk.green(`Name: ${funko.nombre}`));
+        console.log(chalk.green(`Description: ${funko.descripcion}`));
+        console.log(chalk.green(`Type: ${funko.tipo}`));
+        console.log(chalk.green(`Genre: ${funko.genero}`));
+        console.log(chalk.green(`Franchise: ${funko.franquicia}`));
+        console.log(chalk.green(`Number: ${funko.numero}`));
+        console.log(chalk.green(`Exclusive: ${funko.exclusivo}`));
+        console.log(chalk.green(`Special Features: ${funko.caracteristicasEspeciales}`));
+        console.log(chalk.green(`Merch value: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
     }
 
-    // REVISAR ESTA FUNCION
+
     private getMarketValueColor(value: number): (text: string) => string{
-        if (value < 50) {
+        if (value < 20){
             return chalk.red;
-        } else if (value >= 50 && value < 100) {
-            return chalk.yellow;
-        } else if (value >= 100 && value < 200) {
-            return chalk.blue;
-        } else {
+        }else{
             return chalk.green;
         }
     }
@@ -128,30 +126,4 @@ export class FunkoOperations {
         const filePath = `${this.userDirectory}/${funkoId}.json`;
         fs.unlinkSync(filePath);
     }
-
-
-    /*
-    // Listar Funkos y mostrar información de un Funko específico
-    private colorValorDeMercado(valorDeMercado: number): string {
-        if (valorDeMercado < 25) {
-            return chalk.red(valorDeMercado.toString());
-        } else if (valorDeMercado < 50) {
-            return chalk.yellow(valorDeMercado.toString());
-        } else if (valorDeMercado < 100) {
-            return chalk.blue(valorDeMercado.toString());
-        } else {
-            return chalk.green(valorDeMercado.toString());
-        }
-    }
-
-    public listFunkos(): void {
-        this.funkos.forEach(funko => {
-            console.log(`ID: ${funko.id}`);
-            console.log(`Nombre: ${funko.nombre}`);
-            console.log(`Descripción: ${funko.descripcion}`);
-            console.log(`Tipo: ${funko.tipo}`);
-            console.log(`Género: ${funko.genero}`);
-            console.log(``);
-	    })
-    }*/
 }

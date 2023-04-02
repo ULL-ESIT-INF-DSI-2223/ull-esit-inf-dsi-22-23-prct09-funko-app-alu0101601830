@@ -19,26 +19,26 @@ export class FunkoOperations {
             console.log(chalk.green(`New Funko added to ${username} collection!`));
         }
     }
-    updateFunko(updatedFunko) {
+    updateFunko(updatedFunko, username) {
         const index = this.funkos.findIndex(funko => funko.id === updatedFunko.id);
         if (index !== -1) {
             this.funkos[index] = updatedFunko;
             this.saveFunko(updatedFunko);
-            console.log(chalk.green('Funko actualizado correctamente.'));
+            console.log(chalk.green(`Funko updated at ${username} collection!`));
         }
         else {
-            console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
         }
     }
-    deleteFunko(id) {
+    deleteFunko(id, username) {
         const index = this.funkos.findIndex(funko => funko.id === id);
         if (index !== -1) {
             this.funkos.splice(index, 1);
             this.deleteFunkoFile(id);
-            console.log(chalk.green('Funko eliminado correctamente.'));
+            console.log(chalk.green(`Funko removed from ${username} collection!`));
         }
         else {
-            console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
         }
     }
     findFunko(funkoId) {
@@ -49,16 +49,16 @@ export class FunkoOperations {
             console.log(chalk.red(`No Funkos in the list of ${username}`));
             return;
         }
+        console.log(chalk.blue(`----------------------------------`));
+        console.log(chalk.blue(`${username} Funko Pop Collection`));
         for (const funko of this.funkos) {
-            console.log(chalk.blue(`----------------------------------`));
-            console.log(chalk.blue(`${username} Funko Pop Collection`));
             this.printFunkoInfo(funko);
         }
     }
-    getFunkoById(id) {
+    getFunkoById(id, username) {
         const funko = this.funkos.find(f => f.id === id);
         if (!funko) {
-            console.log(chalk.red(`No se encuentra el Funko con el ID "${id}".`));
+            console.log(chalk.red(`Funko not found at ${username} collection!`));
             return;
         }
         this.printFunkoInfo(funko);
@@ -66,26 +66,19 @@ export class FunkoOperations {
     printFunkoInfo(funko) {
         console.log(chalk.blue(`----------------------------------`));
         console.log(chalk.green(`ID: ${funko.id}`));
-        console.log(chalk.green(`Nombre: ${funko.nombre}`));
-        console.log(chalk.green(`Descripción: ${funko.descripcion}`));
-        console.log(chalk.green(`Tipo: ${funko.tipo}`));
-        console.log(chalk.green(`Género: ${funko.genero}`));
-        console.log(chalk.green(`Franquicia: ${funko.franquicia}`));
-        console.log(chalk.green(`Número: ${funko.numero}`));
-        console.log(chalk.green(`Exclusivo: ${funko.exclusivo}`));
-        console.log(chalk.green(`Características especiales: ${funko.caracteristicasEspeciales}`));
-        console.log(chalk.green(`Valor de mercado: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
+        console.log(chalk.green(`Name: ${funko.nombre}`));
+        console.log(chalk.green(`Description: ${funko.descripcion}`));
+        console.log(chalk.green(`Type: ${funko.tipo}`));
+        console.log(chalk.green(`Genre: ${funko.genero}`));
+        console.log(chalk.green(`Franchise: ${funko.franquicia}`));
+        console.log(chalk.green(`Number: ${funko.numero}`));
+        console.log(chalk.green(`Exclusive: ${funko.exclusivo}`));
+        console.log(chalk.green(`Special Features: ${funko.caracteristicasEspeciales}`));
+        console.log(chalk.green(`Merch value: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
     }
-    // REVISAR ESTA FUNCION
     getMarketValueColor(value) {
-        if (value < 50) {
+        if (value < 20) {
             return chalk.red;
-        }
-        else if (value >= 50 && value < 100) {
-            return chalk.yellow;
-        }
-        else if (value >= 100 && value < 200) {
-            return chalk.blue;
         }
         else {
             return chalk.green;
