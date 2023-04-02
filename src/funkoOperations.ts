@@ -1,4 +1,4 @@
-/*import { Funko } from './funko.js';
+import { Funko } from './funko.js';
 import * as fs from 'fs';
 import chalk from 'chalk';
 
@@ -8,19 +8,19 @@ export class FunkoOperations {
     private userDirectory: string;
 
     constructor(username: string) {
-        this.userDirectory = `./${username}`;
+        this.userDirectory = `./users/${username}`;
         this.loadFunkos();
     }
 
     // Añadir, modificar y eliminar Funkos
-    public addFunko(funko: Funko): void {
+    public addFunko(funko: Funko, username: string): void {
         const existingFunko = this.findFunko(funko.id);
         if (existingFunko) {
-            console.log(chalk.red('Error: Ya existe un Funko con el mismo ID.'));
+            console.log(chalk.red(`Funko already exists at ${username} collection!`));
         } else {
             this.funkos.push(funko);
             this.saveFunko(funko);
-            console.log(chalk.green('Funko añadido correctamente.'));
+            console.log(chalk.green(`New Funko added to ${username} collection!`));
         }
     }
 
@@ -51,14 +51,15 @@ export class FunkoOperations {
     }
 
 
-    //OTRA FORMA DE HACERLO PARA LISTAR QUE ES MEJOR:
-    public listFunkos(): void {
+    public listFunkos(username: string): void {
         if (this.funkos.length === 0) {
-            console.log(chalk.red('No hay Funkos en la lista.'));
+            console.log(chalk.red(`No Funkos in the list of ${username}`));
             return;
         }
 
         for (const funko of this.funkos) {
+            console.log(chalk.blue(`----------------------------------`));
+            console.log(chalk.blue(`${username} Funko Pop Collection`));
             this.printFunkoInfo(funko);
         }
     }
@@ -75,6 +76,7 @@ export class FunkoOperations {
     }
 
     private printFunkoInfo(funko: Funko): void {
+        console.log(chalk.blue(`----------------------------------`));
         console.log(chalk.green(`ID: ${funko.id}`));
         console.log(chalk.green(`Nombre: ${funko.nombre}`));
         console.log(chalk.green(`Descripción: ${funko.descripcion}`));
@@ -87,7 +89,8 @@ export class FunkoOperations {
         console.log(chalk.green(`Valor de mercado: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
     }
 
-    private getMarketValueColor(value: number): chalk.Chalk {
+    // REVISAR ESTA FUNCION
+    private getMarketValueColor(value: number): (text: string) => string{
         if (value < 50) {
             return chalk.red;
         } else if (value >= 50 && value < 100) {
@@ -97,9 +100,9 @@ export class FunkoOperations {
         } else {
             return chalk.green;
         }
-    }*/
+    }
     
-/*
+
     // Cargar y guardar Funkos en archivos JSON
     private loadFunkos(): void {
         if (!fs.existsSync(this.userDirectory)) {
@@ -150,5 +153,5 @@ export class FunkoOperations {
             console.log(`Género: ${funko.genero}`);
             console.log(``);
 	    })
-    }*//*
-}*/
+    }*/
+}

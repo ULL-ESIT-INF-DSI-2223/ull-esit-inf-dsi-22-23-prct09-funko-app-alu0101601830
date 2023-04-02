@@ -1,4 +1,4 @@
-/*export enum Tipo {
+export enum Tipo {
     Pop = 'Pop!',
     PopRides = 'Pop! Rides',
     VinylSoda = 'Vinyl Soda',
@@ -25,4 +25,4 @@ export interface Funko {
     exclusivo: boolean;
     caracteristicasEspeciales: string;
     valorDeMercado: number;
-}*/
+}

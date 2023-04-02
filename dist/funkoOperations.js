@@ -1,80 +1,70 @@
-/*import { Funko } from './funko.js';
 import * as fs from 'fs';
 import chalk from 'chalk';
-
-
 export class FunkoOperations {
-    private funkos: Funko[] = [];
-    private userDirectory: string;
-
-    constructor(username: string) {
-        this.userDirectory = `./${username}`;
+    funkos = [];
+    userDirectory;
+    constructor(username) {
+        this.userDirectory = `./users/${username}`;
         this.loadFunkos();
     }
-
     // Añadir, modificar y eliminar Funkos
-    public addFunko(funko: Funko): void {
+    addFunko(funko, username) {
         const existingFunko = this.findFunko(funko.id);
         if (existingFunko) {
-            console.log(chalk.red('Error: Ya existe un Funko con el mismo ID.'));
-        } else {
+            console.log(chalk.red(`Funko already exists at ${username} collection!`));
+        }
+        else {
             this.funkos.push(funko);
             this.saveFunko(funko);
-            console.log(chalk.green('Funko añadido correctamente.'));
+            console.log(chalk.green(`New Funko added to ${username} collection!`));
         }
     }
-
-    public updateFunko(updatedFunko: Funko): void {
+    updateFunko(updatedFunko) {
         const index = this.funkos.findIndex(funko => funko.id === updatedFunko.id);
         if (index !== -1) {
             this.funkos[index] = updatedFunko;
             this.saveFunko(updatedFunko);
             console.log(chalk.green('Funko actualizado correctamente.'));
-        } else {
+        }
+        else {
             console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
         }
     }
-
-    public deleteFunko(id: string): void {
+    deleteFunko(id) {
         const index = this.funkos.findIndex(funko => funko.id === id);
         if (index !== -1) {
             this.funkos.splice(index, 1);
             this.deleteFunkoFile(id);
             console.log(chalk.green('Funko eliminado correctamente.'));
-        } else {
+        }
+        else {
             console.log(chalk.red('Error: No se encontró un Funko con el ID especificado.'));
         }
     }
-
-    private findFunko(funkoId: string): Funko | undefined {
+    findFunko(funkoId) {
         return this.funkos.find((funko) => funko.id === funkoId);
     }
-
-
-    //OTRA FORMA DE HACERLO PARA LISTAR QUE ES MEJOR:
-    public listFunkos(): void {
+    listFunkos(username) {
         if (this.funkos.length === 0) {
-            console.log(chalk.red('No hay Funkos en la lista.'));
+            console.log(chalk.red(`No Funkos in the list of ${username}`));
             return;
         }
-
         for (const funko of this.funkos) {
+            console.log(chalk.blue(`----------------------------------`));
+            console.log(chalk.blue(`${username} Funko Pop Collection`));
             this.printFunkoInfo(funko);
         }
     }
-
-    public getFunkoById(id: string): void {
+    getFunkoById(id) {
         const funko = this.funkos.find(f => f.id === id);
-
         if (!funko) {
             console.log(chalk.red(`No se encuentra el Funko con el ID "${id}".`));
             return;
         }
-
         this.printFunkoInfo(funko);
     }
-
-    private printFunkoInfo(funko: Funko): void {
+    printFunkoInfo(funko) {
+        console.log(chalk.blue(`----------------------------------`));
         console.log(chalk.green(`ID: ${funko.id}`));
         console.log(chalk.green(`Nombre: ${funko.nombre}`));
         console.log(chalk.green(`Descripción: ${funko.descripcion}`));
@@ -86,68 +76,40 @@ export class FunkoOperations {
         console.log(chalk.green(`Características especiales: ${funko.caracteristicasEspeciales}`));
         console.log(chalk.green(`Valor de mercado: `) + this.getMarketValueColor(funko.valorDeMercado)(`${funko.valorDeMercado}`));
     }
-
-    private getMarketValueColor(value: number): chalk.Chalk {
+    // REVISAR ESTA FUNCION
+    getMarketValueColor(value) {
         if (value < 50) {
             return chalk.red;
-        } else if (value >= 50 && value < 100) {
+        }
+        else if (value >= 50 && value < 100) {
             return chalk.yellow;
-        } else if (value >= 100 && value < 200) {
+        }
+        else if (value >= 100 && value < 200) {
             return chalk.blue;
-        } else {
+        }
+        else {
             return chalk.green;
         }
-    }*/
-/*
+    }
     // Cargar y guardar Funkos en archivos JSON
-    private loadFunkos(): void {
+    loadFunkos() {
         if (!fs.existsSync(this.userDirectory)) {
             fs.mkdirSync(this.userDirectory);
         }
-
         const files = fs.readdirSync(this.userDirectory);
-
         files.forEach((file) => {
             const content = fs.readFileSync(`${this.userDirectory}/${file}`, 'utf-8');
-            const funko: Funko = JSON.parse(content);
+            const funko = JSON.parse(content);
             this.funkos.push(funko);
         });
     }
-
-    private saveFunko(funko: Funko): void {
+    saveFunko(funko) {
         const filePath = `${this.userDirectory}/${funko.id}.json`;
         const content = JSON.stringify(funko);
         fs.writeFileSync(filePath, content);
     }
-
-    private deleteFunkoFile(funkoId: string): void {
+    deleteFunkoFile(funkoId) {
         const filePath = `${this.userDirectory}/${funkoId}.json`;
         fs.unlinkSync(filePath);
     }
-
-
-    /*
-    // Listar Funkos y mostrar información de un Funko específico
-    private colorValorDeMercado(valorDeMercado: number): string {
-        if (valorDeMercado < 25) {
-            return chalk.red(valorDeMercado.toString());
-        } else if (valorDeMercado < 50) {
-            return chalk.yellow(valorDeMercado.toString());
-        } else if (valorDeMercado < 100) {
-            return chalk.blue(valorDeMercado.toString());
-        } else {
-            return chalk.green(valorDeMercado.toString());
-        }
-    }
-
-    public listFunkos(): void {
-        this.funkos.forEach(funko => {
-            console.log(`ID: ${funko.id}`);
-            console.log(`Nombre: ${funko.nombre}`);
-            console.log(`Descripción: ${funko.descripcion}`);
-            console.log(`Tipo: ${funko.tipo}`);
-            console.log(`Género: ${funko.genero}`);
-            console.log(``);
-        })
-    }*/ /*
-}*/ 
+}

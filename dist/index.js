@@ -1,41 +1,45 @@
-/*import * as yargs from 'yargs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { FunkoOperations } from './funkoOperations.js';
-import { Funko, Tipo, Genero } from './funko.js';
-import { CommandModule } from 'yargs';
-
-const myCommand: CommandModule = {
-    command: 'add [username] [id] [nombre] [descripcion] [tipo] [genero] [franquicia] [numero]',
-    describe: 'Añadir un Funko',
-    builder: (yargs) => {
-      return yargs
-        .positional('username', { describe: 'Nombre de usuario', type: 'string', demandOption: true })
-        .positional('id', { describe: 'ID del Funko', type: 'string', demandOption: true })
-        .positional('nombre', { describe: 'Nombre del Funko', type: 'string', demandOption: true })
-        .positional('descripcion', { describe: 'Descripción del Funko', type: 'string', demandOption: true })
-        .positional('tipo', { describe: 'Tipo del Funko', choices: Object.values(Tipo), demandOption: true })
-        .positional('genero', { describe: 'Género del Funko', choices: Object.values(Genero), demandOption: true })
-        .positional('franquicia', { describe: 'Franquicia del Funko', type: 'string', demandOption: true })
-        .positional('numero', { describe: 'Número del Funko', type: 'number', demandOption: true })
-    },
-    handler: (argv) => {
-      // ...
-    },
-  };
-  
-/*const argv = yargs
-    .scriptName('funko-cli')
-    .usage('$0 <cmd> [args]')
-    .command(
-        'add [username] [id] [nombre] [descripcion] [tipo] [genero] [franquicia] [numero] [exclusivo] [caracteristicasEspeciales] [valorDeMercado]',
-        'Añadir un Funko',
-        (yargs) => {
-            return yargs
-                .positional('username', { describe: 'Nombre de usuario', type: 'string', demandOption: true })
-                .positional('id', { describe: 'ID del Funko', type: 'string', demandOption: true })
-                .positional('nombre', { describe: 'Nombre del Funko', type: 'string', demandOption: true })
-                .positional('descripcion', { describe: 'Descripción del Funko', type: 'string', demandOption: true })
-                .positional('tipo', { describe: 'Tipo del Funko', choices: Object.values(Tipo), demandOption: true })
-                .positional('genero', { describe: 'Género del Funko', choices: Object.values(Genero), demandOption: true })
-                .positional('franquicia', { describe: 'Franquicia del Funko', type: 'string', demandOption: true })
-                .positional('numero', { describe: 'Número del Funko', type: 'number', demandOption: true })
-        })*/
+import { Tipo, Genero } from './funko.js';
+const argv = yargs(hideBin(process.argv))
+    .command('add', 'Añade un Funko a la colección', (yargs) => {
+    return yargs
+        .option('user', { describe: 'Nombre de usuario', type: 'string', demandOption: true })
+        .option('id', { describe: 'ID del Funko', type: 'string', demandOption: true })
+        .option('name', { describe: 'Nombre del Funko', type: 'string', demandOption: true })
+        .option('desc', { describe: 'Descripción del Funko', type: 'string', demandOption: true })
+        .option('type', { describe: 'Tipo del Funko', choices: Object.values(Tipo), demandOption: true })
+        .option('genre', { describe: 'Género del Funko', choices: Object.values(Genero), demandOption: true })
+        .option('franchise', { describe: 'Franquicia del Funko', type: 'string', demandOption: true })
+        .option('number', { describe: 'Número del Funko', type: 'number', demandOption: true })
+        .option('exclusive', { describe: 'Exclusividad del Funko', type: 'boolean', demandOption: true })
+        .option('specialCharacter', { describe: 'Características especiales del Funko', type: 'string', demandOption: true })
+        .option('value', { describe: 'Valor de mercado del Funko', type: 'number', demandOption: true });
+}, (argv) => {
+    const funkoOperations = new FunkoOperations(argv.user);
+    const newFunko = {
+        id: argv.id,
+        nombre: argv.name,
+        descripcion: argv.desc,
+        tipo: argv.type,
+        genero: argv.genre,
+        franquicia: argv.franchise,
+        numero: argv.number,
+        exclusivo: argv.exclusive,
+        caracteristicasEspeciales: argv.specialCharacter,
+        valorDeMercado: argv.value
+    };
+    funkoOperations.addFunko(newFunko, argv.user);
+})
+    .command('list', 'Listar todos los Funkos', (yargs) => {
+    return yargs
+        .option('user', { describe: 'Nombre de usuario', type: 'string', demandOption: true });
+}, (argv) => {
+    const funkoOperations = new FunkoOperations(argv.user);
+    funkoOperations.listFunkos(argv.user);
+})
+    // Aquí puedes agregar los comandos para modificar, eliminar, listar y leer la información de un Funko específico.
+    .help()
+    .alias('help', 'h')
+    .argv;

@@ -1,28 +1,16 @@
-/*export enum Tipo {
-    Pop = 'Pop!',
-    PopRides = 'Pop! Rides',
-    VinylSoda = 'Vinyl Soda',
-    VinylGold = 'Vinyl Gold',
-}
-
-export enum Genero {
-    Animacion = 'Animación',
-    PeliculasTV = 'Películas y TV',
-    Videojuegos = 'Videojuegos',
-    Deportes = 'Deportes',
-    Musica = 'Música',
-    Anime = 'Ánime',
-}
-
-export interface Funko {
-    id: string;
-    nombre: string;
-    descripcion: string;
-    tipo: Tipo;
-    genero: Genero;
-    franquicia: string;
-    numero: number;
-    exclusivo: boolean;
-    caracteristicasEspeciales: string;
-    valorDeMercado: number;
-}*/ 
+export var Tipo;
+(function (Tipo) {
+    Tipo["Pop"] = "Pop!";
+    Tipo["PopRides"] = "Pop! Rides";
+    Tipo["VinylSoda"] = "Vinyl Soda";
+    Tipo["VinylGold"] = "Vinyl Gold";
+})(Tipo = Tipo || (Tipo = {}));
+export var Genero;
+(function (Genero) {
+    Genero["Animacion"] = "Animaci\u00F3n";
+    Genero["PeliculasTV"] = "Pel\u00EDculas y TV";
+    Genero["Videojuegos"] = "Videojuegos";
+    Genero["Deportes"] = "Deportes";
+    Genero["Musica"] = "M\u00FAsica";
+    Genero["Anime"] = "\u00C1nime";
+})(Genero = Genero || (Genero = {}));

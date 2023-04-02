@@ -1,8 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MochilaJSON = exports.MochilaCSV = void 0;
-const fs = require("fs");
+import * as fs from 'fs';
+/**
+ * Clase abstracta para representar una mochila
+ * @abstract
+ */
 class Mochila {
+    /**
+     * Método para procesar un archivo de datos y obtener los beneficios y pesos de los elementos de la mochila
+     * @param filePath - Ruta del archivo de datos
+     * @returns  Objeto con los beneficios y pesos de los elementos de la mochila
+     * @throws Error si el archivo no existe o el formato no es soportado
+     */
     procesar(filePath) {
         if (!fs.existsSync(filePath)) {
             throw new Error('El archivo no existe en la ruta especificada.');
@@ -26,10 +33,24 @@ class Mochila {
         return { beneficios, pesos };
     }
 }
-class MochilaCSV extends Mochila {
+/**
+ * Clase concreta para representar una mochila con datos en formato CSV
+ * @extends Mochila
+ */
+export class MochilaCSV extends Mochila {
+    /**
+     * Método implementado en la otra clase
+     * @param data - Datos en formato JSON
+     * @throws Error por no estar implementado
+     */
     extraerDatosJSON(data) {
         throw new Error('Method not implemented.');
     }
+    /**
+     * Método para extraer datos de un archivo CSV
+     * @param data - Datos en formato CSV
+     * @returns Objeto con la capacidad y los elementos de la mochila
+     */
     extraerDatosCSV(data) {
         const lines = data.trim().split('\n');
         const capacidad = parseInt(lines[0]);
@@ -41,11 +62,24 @@ class MochilaCSV extends Mochila {
         return { capacidad, elementos };
     }
 }
-exports.MochilaCSV = MochilaCSV;
-class MochilaJSON extends Mochila {
+/**
+ * Clase concreta para representar una mochila con datos en formato JSON
+ * @extends Mochila
+ */
+export class MochilaJSON extends Mochila {
+    /**
+     * Método implementado en la otra clase
+     * @param data - Datos en formato CSV
+     * @throws Error por no estar implementado
+     */
     extraerDatosCSV(data) {
         throw new Error('Method not implemented.');
     }
+    /**
+     * Método para extraer datos de un archivo JSON
+     * @param data - Datos en formato JSON
+     * @returns Objeto con la capacidad y los elementos de la mochila
+     */
     extraerDatosJSON(data) {
         const jsonData = JSON.parse(data);
         const capacidad = jsonData.capacidad;
@@ -57,7 +91,7 @@ class MochilaJSON extends Mochila {
         return { capacidad, elementos };
     }
 }
-exports.MochilaJSON = MochilaJSON;
+/* Funcionamiento de prueba*/
 const extractorCSV = new MochilaCSV();
 const resultadoCSV = extractorCSV.procesar('src/data/archivo.csv');
 console.log(resultadoCSV);
