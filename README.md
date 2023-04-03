@@ -185,12 +185,25 @@ const argv = yargs(hideBin(process.argv))
 ```
 Primero introduzco el nombre del comando y una pequeña descripción, después voy leyendo todas las variables y les pongo la opción de `demandOption: true` para que sea obligatorio introducir esas variables. En este caso las variables son el nombre del usuario y el id del Funko a eliminar. Después en argv creo un nuevo objeto `FunkoOperations` con el argumento del usuario introducido y aplico la operación correspondiente, en este caso `deleteFunko` con el id introducido y el usuario introducido: (argv.id, argv.user)
 ## Tests
+Todos los GitHub Actions me dan sin error:
+<p align="center">
+    <img width="674" alt="image" src="https://user-images.githubusercontent.com/117380181/229515055-bac636e5-c0dc-483c-a025-8220ff616d04.png">
+</p>
+
+
 Los tests se han realizado con Mocha Chai y sus resultados son los siguientes:
-INTRODUCIR IMAGEN
+<p align="center">
+    <img width="583" alt="image" src="https://user-images.githubusercontent.com/117380181/229515327-076fca69-3e33-4e6c-8165-bfb4b36cc487.png">
+</p>
+
+
 Los resultados del Coverall son los siguientes:
-INTRODUCIR IMAGEN
-Los resultados del SonarCloud son los siguientes:
-INTRODUCIR IMAGEN
+<p align="center">
+    <img width="491" alt="image" src="https://user-images.githubusercontent.com/117380181/229515584-508c4602-f8be-4ba4-b9d5-4498b5153d7c.png">
+</p>
+
+No está todo el código cubierto pero hay mucha parte de los JSON que no se como tratarlo o sobre errores en pantalla.
+
 ## Ejemplos de ejecución
 **Añado un Funko**
 <p align="center">
