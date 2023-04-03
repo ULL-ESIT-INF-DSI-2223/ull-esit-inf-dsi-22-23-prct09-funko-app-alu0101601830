@@ -1,3 +1,7 @@
+/**
+ * Enumerado para el tipo de Funko
+ * @enum
+ */
 export enum Tipo {
     Pop = 'Pop!',
     PopRides = 'Pop! Rides',
@@ -5,6 +9,10 @@ export enum Tipo {
     VinylGold = 'Vinyl Gold',
 }
 
+/**
+ * Enumerado para el género del Funko
+ * @enum
+ */
 export enum Genero {
     Animacion = 'Animación',
     PeliculasTV = 'Películas y TV',
@@ -14,6 +22,10 @@ export enum Genero {
     Anime = 'Ánime',
 }
 
+/**
+ * Interface para representar el Funko
+ * @interface
+ */
 export interface Funko {
     id: string;
     nombre: string;

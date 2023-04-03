@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as fs from 'fs';
-import { MochilaCSV, MochilaJSON } from '../src/Mochila';
+import { MochilaCSV, MochilaJSON } from '../src/Mochila.js';
 
 describe('Mochila', () => {
   describe('Extension no soportada', () =>{
