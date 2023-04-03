@@ -190,25 +190,27 @@ Los resultados del SonarCloud son los siguientes:
 INTRODUCIR IMAGEN
 ## Ejemplos de ejecución
 **Añado un Funko**
-
+<img width="719" alt="1" src="https://user-images.githubusercontent.com/117380181/229497092-43fb8f8a-bcc3-4c8d-b82b-edfae2e26921.png">
 **Añado el mismo Funko**
-
+<img width="722" alt="2" src="https://user-images.githubusercontent.com/117380181/229497119-af77511b-f03c-4aea-ac22-9e9b8bd96bf0.png">
 **Añado otro Funko**
-
+<img width="728" alt="3" src="https://user-images.githubusercontent.com/117380181/229497156-f85a571b-4479-4d8b-bcca-20227b6b344c.png">
 **Imprimo todos los Funkos del usuario**
-
+<img width="724" alt="4" src="https://user-images.githubusercontent.com/117380181/229497184-55593b6b-b5ee-4610-887e-80c38d6857fc.png">
 **Modifico el primer Funko**
-
+<img width="723" alt="5" src="https://user-images.githubusercontent.com/117380181/229497211-34aab8e2-6a9d-4b8c-bc79-f33612206eb9.png">
 **Imprimo toda la información de nuevo para ver la modificación**
-
+<img width="723" alt="6" src="https://user-images.githubusercontent.com/117380181/229497244-b97e456e-2b6e-4a41-ac87-3f4eb0286220.png">
 **Muestro la información del primer Funko**
-
+<img width="722" alt="7" src="https://user-images.githubusercontent.com/117380181/229497267-08f32d96-d94d-4e73-8476-9871e4c9815a.png">
 **Muestro la información de un Funko que no existe**
-
+<img width="725" alt="8" src="https://user-images.githubusercontent.com/117380181/229497291-d3cb94d1-c7b6-48c4-8aa3-c35ddacce70a.png">
 **Elimino el primer Funko**
-
+<img width="722" alt="9" src="https://user-images.githubusercontent.com/117380181/229497313-43ef5072-0017-46ae-a597-997f272b5882.png">
 **Intento eliminar un Funko que no existe**
-
+<img width="720" alt="10" src="https://user-images.githubusercontent.com/117380181/229497339-5b1e98ea-0c27-40e7-8c4c-f79e0648139c.png">
 **Muestro todos los Funkos para ver si se han eliminado**
+<img width="719" alt="11" src="https://user-images.githubusercontent.com/117380181/229497368-f0ad1882-c70a-4dfd-98f9-c53af1813573.png">
+
 ## Conclusión
 En esta práctica he aprendido como utilizar bien el paquete yargs y todas sus posibilidades para ejecutar comandos por pantalla, también he aprendido sobre el paquete chalk que puedes poner colores a los mensajes y he mejorado con la lectura de archivos y ficheros de tipo por ejemplo JSON.
