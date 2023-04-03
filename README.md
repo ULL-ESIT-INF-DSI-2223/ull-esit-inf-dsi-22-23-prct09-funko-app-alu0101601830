@@ -1,7 +1,9 @@
 # Práctica 9: Funko Pop
 ##### Diego Wiederkehr Bruno, alu0101601830  
+### El GitHub Pages se encuentra en el siguiente [link](https://ull-esit-inf-dsi-2223.github.io/ull-esit-inf-dsi-22-23-prct09-funko-app-alu0101601830/).
 ## Introducción
-En esta práctica debemos realizar un sistema de colección de Funko Pop para usuarios. Cada usuario tendrá una colección de Funkos con sus características donde podrán agregar más, eliminar, listar o mostrar información detallada sobre cada Funko. La aplicación será controlada por comandos y guardará la información sobre cada Funko en ficheros JSON.
+En esta práctica debemos realizar un sistema de colección de Funko Pop para usuarios. Cada usuario tendrá una colección de Funkos con sus características donde podrán agregar más, eliminar, listar o mostrar información detallada sobre cada Funko. La aplicación será controlada por comandos y guardará la información sobre cada Funko en ficheros JSON. 
+
 ## Distribución de archivos
 En mi caso, he realizado tres archivos distintos, **funko.ts**, **funkoOperations.ts** y **index.ts**. En resumen, dentro de **funko.ts** tenemos la interfaz de como es un Funko y dos enumerados para el tipo y el género. En **funkoOperations.ts** tenemos todas las operaciones a realizar con los Funkos y finalmente en **index.ts** implementamos la interacción del usuario con la aplicación a través de los comandos.
 
