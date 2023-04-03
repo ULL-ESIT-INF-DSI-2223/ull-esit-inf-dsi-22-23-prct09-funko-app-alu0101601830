@@ -112,7 +112,7 @@ export class FunkoOperations {
      * Función que imprime la información con detalles de un Funko
      * @param funko - Funko que hay que imprimir la información
      */
-    private printFunkoInfo(funko: Funko): void {
+    public printFunkoInfo(funko: Funko): void {
         console.log(chalk.blue(`----------------------------------`));
         console.log(chalk.green(`ID: ${funko.id}`));
         console.log(chalk.green(`Name: ${funko.nombre}`));
@@ -131,7 +131,7 @@ export class FunkoOperations {
      * @param value - Valor del Funko
      * @returns El color correspondiente dependiendo de su valor
      */
-    private getMarketValueColor(value: number): (text: string) => string{
+    public getMarketValueColor(value: number): (text: string) => string{
         if (value < 20){
             return chalk.red;
         }else if (value >= 20 && value < 30){

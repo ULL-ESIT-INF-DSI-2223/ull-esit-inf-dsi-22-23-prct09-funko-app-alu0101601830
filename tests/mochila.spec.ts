@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import chai from 'chai';
+const expect = chai.expect;
 import * as fs from 'fs';
 import { MochilaCSV, MochilaJSON } from '../src/Mochila.js';
 
