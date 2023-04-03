@@ -73,7 +73,6 @@ describe('FunkoOperations', () => {
     
       // Verifica si se llamó a console.log con el mensaje de error esperado
       expect(consoleOutput).contain(`Funko already exists at ${testUsername} collection!`);
-    
       // Restaura la función console.log a su estado original
       console['log'] = consoleLogOriginal;
       done();
